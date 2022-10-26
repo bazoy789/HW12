@@ -2,8 +2,10 @@ import json
 
 from flask import Blueprint, render_template, request
 from functions import *
+import logging
 
 loader_blueprint = Blueprint('loader_blueprint', __name__, template_folder='templates', url_prefix='/')
+logging.basicConfig(filename='basic.log',level=logging.INFO)
 
 @loader_blueprint.route('/post')
 def create_post():
@@ -17,6 +19,7 @@ def uplouds_post():
     picture_url = save_picture(picture)
 
     if not picture_url:
+        logging.INFO(f'{picture_url}: Не изображение')
         return 'Не изображение'
 
     add_post({'pic': picture_url, 'content': content})

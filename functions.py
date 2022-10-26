@@ -24,7 +24,7 @@ def save_picture(picture):
 
 def save_post_to_json(posts,path='posts.json'):
     with open(path, 'w', encoding='UTF-8') as file:
-        json.dump(posts, file)
+        json.dump(posts, file, ensure_ascii=False)
 
 def add_post(post):
     posts = load_posts()
